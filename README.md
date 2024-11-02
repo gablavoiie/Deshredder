@@ -5,5 +5,4 @@ Something Awesome Project
 University of New South Wales
 Nov 1, 2024
 
-Gabrielle Lavoie - z5624871
-Gabrielle MacInnes - z
+Gabrielle Lavoie and Gabrielle MacInnes
