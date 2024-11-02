@@ -24,10 +24,11 @@
 
     <!-- form to submitted the fragmented document pieces to be deshredded -->
     <form method="post" action="/" enctype="multipart/form-data">
-        <input type="file" name="image" required>
+        <input type="file" name="image">
         <br><br>
         <input class="button" type="submit" name="add_image" value="Add Fragment">
-        <input class="button" type="submit" name="submit" value="Deshred">
+        <input class="button" type="submit" name="deshred" value="Deshred">
+        <input class="button" type="submit" name="clear" value="Clear">
     </form>
 
     <!-- show the images currently uploaded -->
@@ -38,9 +39,9 @@
         {% endfor %}
     </div>
 
-    <!-- show an error if necessary -->
-    {% if error %}
-        <p style="color: red;">{{ error }}</p>
+    {% if output_image %}
+        <h2>Reconstructed Document:</h2>
+        <img id="output" src="{{ url_for('static', filename='output/' + output_image) }}" alt="Output Image">
     {% endif %}
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>

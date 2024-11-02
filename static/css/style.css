@@ -94,3 +94,7 @@ h4 {
 .open {
     transform: rotate(0deg);
 }
+
+#output {
+    height: 400px;
+}
