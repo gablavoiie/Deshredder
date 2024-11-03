@@ -17,9 +17,9 @@
     </h4>
 
     <div class="about-info" id="about-info">
-        <h4>The paper de-shredder is an accessible web app for reconstructing shredded documents.</h4>
-        <h4>Upload each document fragment by browsing the requested file and using the "Add Fragment" button.</h4>
-        <h4>Press the "Deshred" button to view the reconstructed document.</h4>
+        <p>The paper de-shredder is an accessible web app for reconstructing shredded documents.</p>
+        <p>Upload each document fragment by browsing the requested file and using the "Add Fragment" button.</p>
+        <p>Press the "Deshred" button to view the reconstructed document.</p>
     </div>
 
     <!-- form to submitted the fragmented document pieces to be deshredded -->
@@ -50,7 +50,7 @@
     {% endif %}
 
     {% if output_image %}
-        <h2>Reconstructed Document:</h2>
+        <h2 id="hii">Reconstructed Document:</h2>
         <img id="output" src="{{ url_for('static', filename='output/' + output_image) }}" alt="Output Image">
     {% endif %}
 
