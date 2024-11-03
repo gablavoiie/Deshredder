@@ -8,6 +8,7 @@ app = Flask(__name__)
 
 # store images uploaded
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
+app.config['FRAGMENTS_FOLDER'] = 'static/fragments'
 app.config['OUTPUT_FOLDER'] = 'static/output'
 
 # allowed extensions for image files
@@ -26,6 +27,8 @@ def generate_output(output_path='./static/output/output.jpg', width=800, height=
     
     # save it
     black_image.save(output_path)
+    black_image.save('./static/fragments/hi.jpg')
+    black_image.save('./static/fragments/hi2.jpg')
     print(f"Black image saved as {output_path}")
 
 # main home page, GET is to see the web page, POST is trigger the deshredding process
@@ -34,6 +37,7 @@ def deshred():
 
     # initally there is no output to display
     output_image = None
+    current_fragments = None
 
     if request.method == "POST":
 
@@ -57,11 +61,16 @@ def deshred():
             # TODO add deshredding code
             generate_output()
             output_image = 'output.jpg'
+            current_fragments = os.listdir(app.config['FRAGMENTS_FOLDER'])
         
         if 'clear' in request.form:
             # clear uploads
             for file in os.listdir(app.config['UPLOAD_FOLDER']):
                 os.remove(os.path.join(app.config['UPLOAD_FOLDER'], file))
+
+            # clear fragments
+            for file in os.listdir(app.config['FRAGMENTS_FOLDER']):
+                os.remove(os.path.join(app.config['FRAGMENTS_FOLDER'], file))
 
             # clear outputs
             for file in os.listdir(app.config['OUTPUT_FOLDER']):
@@ -69,7 +78,7 @@ def deshred():
 
     # render current images
     current_images = os.listdir(app.config['UPLOAD_FOLDER'])
-    return render_template("index.html", images=current_images, output_image=output_image)
+    return render_template("index.html", images=current_images, fragments=current_fragments, output_image=output_image)
 
 if __name__ == "__main__":
     app.run(debug=True)
